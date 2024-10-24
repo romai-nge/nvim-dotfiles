@@ -14,9 +14,15 @@ return {
             "rafamadriz/friendly-snippets",
         },
         config = function()
-            require("luasnip").config.setup({
+            local ls = require("luasnip")
+            ls.config.setup({
                 enable_autosnippets = true,
                 store_selection_keys = "<C-y>",
+            })
+            ls.add_snippets("all", {
+                ls.snippet("hello", {
+                    ls.text_node("Hi, how are you ?"),
+                }),
             })
         end,
     },
@@ -26,8 +32,8 @@ return {
             local cmp = require("cmp")
             local luasnip = require("luasnip")
 
-            require("luasnip.loaders.from_vscode").lazy_load()
-            require("luasnip.loaders.from_lua").lazy_load({ paths = "./snippets" })
+            -- require("luasnip.loaders.from_vscode").lazy_load()
+            -- require("luasnip.loaders.from_lua").lazy_load({ paths = "./snippets" })
 
             cmp.setup({
                 snippet = {
@@ -76,7 +82,7 @@ return {
                     end, { "i", "s" }),
                 },
                 sources = cmp.config.sources({
-                    { name = "nvim_lsp" },
+                    -- { name = "nvim_lsp" },
                     { name = "luasnip" },
                 }, {
                     { name = "buffer" },
