@@ -13,6 +13,7 @@ return {
 				"cpp",
 				"markdown",
 				"markdown_inline",
+				"gitcommit",
 			},
 			highlight = {
 				enable = true,
