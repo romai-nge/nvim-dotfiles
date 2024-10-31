@@ -25,7 +25,7 @@ return {
 					"lua_ls",
 					"clangd",
 					"pyright",
-					"texlab",
+                    "texlab",
 					"marksman",
 				},
 			})

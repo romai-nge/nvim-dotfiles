@@ -1,4 +1,10 @@
 return {
+    {
+        'm4xshen/autoclose.nvim',
+        config = function ()
+            require("autoclose").setup()
+        end
+    },
 	{
 		-- Snippets from LSPs
 		"hrsh7th/cmp-nvim-lsp",
@@ -21,7 +27,7 @@ return {
 
 			-- Luasnip configuration
 			local ls = require("luasnip")
-			require("luasnip.loaders.from_lua").load({ paths = { "./lua/plugins/luasnippets" } }) -- Custom snippets
+			require("luasnip.loaders.from_lua").lazy_load({ paths = { "./lua/plugins/luasnippets" } }) -- Custom snippets
 			ls.config.setup({
 				history = true,
 				enable_autosnippets = true,
@@ -74,7 +80,7 @@ return {
 						end
 					end, { "i", "s" }),
 
-					["<C-l>"] = cmp.mapping(function(fallback)
+					["<C-j>"] = cmp.mapping(function(fallback)
 						if ls.choice_active() then
 							ls.change_choice(1)
 						else
