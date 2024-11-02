@@ -1,5 +1,8 @@
 ---@diagnostic disable: undefined-global
-local in_mathzone = require("luasnip.extras.conditions").in_mathzone
+local in_mathzone = function()
+  -- The `in_mathzone` function requires the VimTeX plugin
+  return vim.fn['vimtex#syntax#in_mathzone']() == 1
+end
 return {}, {
     s(
         { trig = "([%a])bf", regTrig = true, wordTrig = false },

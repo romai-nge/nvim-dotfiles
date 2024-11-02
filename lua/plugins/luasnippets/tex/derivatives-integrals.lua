@@ -1,5 +1,8 @@
 ---@diagnostic disable: undefined-global
-local in_mathzone = require("luasnip.extras.conditions").in_mathzone
+local in_mathzone = function()
+  -- The `in_mathzone` function requires the VimTeX plugin
+  return vim.fn['vimtex#syntax#in_mathzone']() == 1
+end
 return {}, {
     -- Derivatives
     s(
@@ -19,14 +22,16 @@ return {}, {
         fmta("\\frac{\\partial <> }{\\partial <> }", {
             i(1, "u"),
             i(2, "x"),
-        })
+        }),
+        { condition = in_mathzone }
     ),
     s(
         { trig = "pa([])([])", wordTrig = false },
         fmta("\\frac{ \\partial <> }{ \\partial <> }", {
             i(1, "u"),
             i(2, "x"),
-        })
+        }),
+        { condition = in_mathzone }
     ),
 
     -- Integrals
@@ -46,9 +51,9 @@ return {}, {
         }),
         { condition = in_mathzone }
     ),
-    s({ trig = "sint", wordTrig = false }, fmta("\\int <> d\\mathbf{S}", { i(1) })),
-    s({ trig = "lint", wordTrig = false }, fmta("\\int <> d\\mathbf{l}", { i(1) })),
-    s({ trig = "vint", wordTrig = false }, fmta("\\int <> dV", { i(1) })),
+    s({ trig = "sint", wordTrig = false }, fmta("\\int <> d\\mathbf{S}", { i(1) }),{ condition = in_mathzone }),
+    s({ trig = "lint", wordTrig = false }, fmta("\\int <> d\\mathbf{l}", { i(1) }),{ condition = in_mathzone }),
+    s({ trig = "vint", wordTrig = false }, fmta("\\int <> dV", { i(1) }), { condition = in_mathzone }),
     s(
         { trig = "oinf", wordTrig = false },
         fmta("\\int_{0}^{\\infty} <> d<>", {
@@ -92,5 +97,5 @@ return {}, {
     ),
     s({ trig = "oint", wordTrig = false }, { t("\\oint") }, { condition = in_mathzone }),
     s({ trig = "iint", wordTrig = false }, { t("\\iint") }, { condition = in_mathzone }),
-    s({ trig = "iiint", wordTrig = false }, { t("\\iiint") }, { condition = in_mathzone }),eturn {}, {
+    s({ trig = "iiint", wordTrig = false }, { t("\\iiint") }, { condition = in_mathzone }),
 }
