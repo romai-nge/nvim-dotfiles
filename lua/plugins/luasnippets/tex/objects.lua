@@ -5,8 +5,8 @@ local in_mathzone = function()
 end
 return {}, {
     s(
-        { trig = "([%a])bf", regTrig = true, wordTrig = false },
-        fmta("\\mathbf{<>}", {
+        { trig = "([%a])bm", regTrig = true, wordTrig = false },
+        fmta("\\bm{<>}", {
             f(function(_, snip)
                 return snip.captures[1]
             end),
@@ -14,8 +14,8 @@ return {}, {
         { condition = in_mathzone }
     ),
     s(
-        { trig = "bf", wordTrig = false },
-        fmta("\\mathbf{<>}", {
+        { trig = "bm", wordTrig = false },
+        fmta("\\bm{<>}", {
             i(1),
         }),
         { condition = in_mathzone }

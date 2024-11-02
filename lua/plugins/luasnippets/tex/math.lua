@@ -1,8 +1,8 @@
 ---@diagnostic disable: undefined-global
 
 local in_mathzone = function()
-  -- The `in_mathzone` function requires the VimTeX plugin
-  return vim.fn['vimtex#syntax#in_mathzone']() == 1
+    -- The `in_mathzone` function requires the VimTeX plugin
+    return vim.fn["vimtex#syntax#in_mathzone"]() == 1
 end
 
 return {}, {
@@ -14,13 +14,13 @@ return {}, {
     -- Super/Sub-scripts
     s({ trig = "rd", wordTrig = false }, { t("^{"), i(1), t("}") }, { condition = in_mathzone }),
     s({ trig = "_", wordTrig = false }, { t("_{"), i(1), t("}") }, { condition = in_mathzone }),
-    s({ trig = '([%a])ij' },
-        fmta(
-            '<>_{ij}',
-            {
-                f(function(_, snip) return snip.captures[1] end),
-            }
-        )
+    s(
+        { trig = "([%a])ij" },
+        fmta("<>_{ij}", {
+            f(function(_, snip)
+                return snip.captures[1]
+            end),
+        })
     ),
 
     -- Complex numbers
@@ -28,14 +28,44 @@ return {}, {
     s({ trig = "Re", wordTrig = false }, { t("\\mathrm{Re}") }, { condition = in_mathzone }),
     s({ trig = "Im", wordTrig = false }, { t("\\mathrm{Im}") }, { condition = in_mathzone }),
 
-    s({trig = '([^%a])ff', regTrig = true, wordTrig = false},
-      fmta(
-        [[<>\frac{<>}{<>}]],
-        {
-          f( function(_, snip) return snip.captures[1] end ),
-          i(1),
-          i(2)
-        }
-      )
+    s(
+        { trig = "([^%a])ff", regTrig = true, wordTrig = false },
+        fmta([[<>\frac{<>}{<>}]], {
+            f(function(_, snip)
+                return snip.captures[1]
+            end),
+            i(1),
+            i(2),
+        })
+    ),
+
+    -- Brackets
+    s(
+        { trig = "lr(", wordTrig = false },
+        fmta("\\left( <> \\right)", {
+            i(1),
+        }),
+        { condition = in_mathzone }
+    ),
+    s(
+        { trig = "lr{", wordTrig = false },
+        fmta("\\left{ <> \\right}", {
+            i(1),
+        }),
+        { condition = in_mathzone }
+    ),
+    s(
+        { trig = "lr[", wordTrig = false },
+        fmta("\\left[ <> \\right]", {
+            i(1),
+        }),
+        { condition = in_mathzone }
+    ),
+    s(
+        { trig = "lr|", wordTrig = false },
+        fmta("\\left| <> \\right|", {
+            i(1),
+        }),
+        { condition = in_mathzone }
     ),
 }

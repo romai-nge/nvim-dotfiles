@@ -1,4 +1,8 @@
 ---@diagnostic disable: undefined-global
-
--- 2 lists the first for normal snippets and the second for autosnippets
-return {}
+return {}, {
+	s({ trig = "(", wordTrig = false, priority = 1 }, fmta("(<>)", { i(1) })),
+	s({ trig = "{", wordTrig = false, priority = 1 }, fmta("{<>}", { i(1) })),
+	s({ trig = "[", wordTrig = false, priority = 1 }, fmta("[<>]", { i(1) })),
+	s({ trig = "'", wordTrig = false, priority = 1 }, fmta("'<>'", { i(1) })),
+	s({ trig = '"', wordTrig = false, priority = 1 }, fmta('"<>"', { i(1) })),
+}
