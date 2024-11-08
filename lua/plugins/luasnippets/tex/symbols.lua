@@ -1,22 +1,50 @@
 ---@diagnostic disable: undefined-global
 local in_mathzone = function()
-  -- The `in_mathzone` function requires the VimTeX plugin
-  return vim.fn['vimtex#syntax#in_mathzone']() == 1
+    -- The `in_mathzone` function requires the VimTeX plugin
+    return vim.fn["vimtex#syntax#in_mathzone"]() == 1
 end
 return {}, {
     -- Symbols
     s({ trig = "ooo", wordTrig = false }, { t("\\infty") }, { condition = in_mathzone }),
-    s({ trig = "sum", wordTrig = false }, { t("\\sum") }, { condition = in_mathzone }),
+    s(
+        { trig = "prr", wordTrig = false },
+        fmta("\\prod_{<>=<>}^{<>}", {
+            i(1, "i"),
+            i(2, "1"),
+            i(3, "n"),
+        }
+        ),
+        { condition = in_mathzone }
+    ),
+    s(
+        { trig = "sum", wordTrig = false },
+        fmta("\\sum_{<>=<>}^{<>}", {
+            i(1, "i"),
+            i(2, "1"),
+            i(3, "n"),
+        }
+        ),
+        { condition = in_mathzone }
+    ),
+    s(
+        { trig = "lim", wordTrig = false },
+        fmta("\\lim_{<>\\to <>}", {
+            i(1, "x"),
+            i(2, "\\infty"),
+        }
+        ),
+        { condition = in_mathzone }
+    ),
     s({ trig = "prod", wordTrig = false }, { t("\\prod") }, { condition = in_mathzone }),
     s({ trig = "+-", wordTrig = false }, { t("\\pm") }, { condition = in_mathzone }),
     s({ trig = "-+", wordTrig = false }, { t("\\mp") }, { condition = in_mathzone }),
     s({ trig = "...", wordTrig = false }, { t("\\dots") }, { condition = in_mathzone }),
     s({ trig = "nabl", wordTrig = false }, { t("\\nabla") }, { condition = in_mathzone }),
     s({ trig = "del", wordTrig = false }, { t("\\nabla") }, { condition = in_mathzone }),
-    s({ trig = "xx", wordTrig = false }, { t("\\times") }, { condition = in_mathzone }),
+    s({ trig = "**"}, { t("\\times") }, { condition = in_mathzone }),
     s({ trig = "c.", wordTrig = false }, { t("\\cdot") }, { condition = in_mathzone }),
     s({ trig = "//", wordTrig = false }, { t("\\parallel") }, { condition = in_mathzone }),
-    s({ trig = "ssi", wordTrig = false }, { t("\\Leftrightarrow") }, { condition = in_mathzone }),
+    s({ trig = "ssi", wordTrig = false }, { t("\\iff") }, { condition = in_mathzone }),
 
     -- Equivalences
     s({ trig = "===", wordTrig = false }, { t("\\equiv") }, { condition = in_mathzone }),

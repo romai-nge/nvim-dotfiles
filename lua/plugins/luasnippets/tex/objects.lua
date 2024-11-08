@@ -45,7 +45,7 @@ return {}, {
     ),
     s(
         { trig = "([%a])hat", regTrig = true, wordTrig = false },
-        fmta("\\vec{<>}", {
+        fmta("\\hat{<>}", {
             f(function(_, snip)
                 return snip.captures[1]
             end),
@@ -54,14 +54,14 @@ return {}, {
     ),
     s(
         { trig = "hat", wordTrig = false },
-        fmta("\\vec{<>}", {
+        fmta("\\hat{<>}", {
             i(1),
         }),
         { condition = in_mathzone }
     ),
     s(
         { trig = "([%a])bar", regTrig = true, wordTrig = false },
-        fmta("\\vec{<>}", {
+        fmta("\\bar{<>}", {
             f(function(_, snip)
                 return snip.captures[1]
             end),
@@ -70,14 +70,14 @@ return {}, {
     ),
     s(
         { trig = "bar", wordTrig = false },
-        fmta("\\vec{<>}", {
+        fmta("\\bar{<>}", {
             i(1),
         }),
         { condition = in_mathzone }
     ),
     s(
         { trig = "([%a])dot", regTrig = true, wordTrig = false },
-        fmta("\\vec{<>}", {
+        fmta("\\dot{<>}", {
             f(function(_, snip)
                 return snip.captures[1]
             end),
@@ -86,14 +86,14 @@ return {}, {
     ),
     s(
         { trig = "dot", wordTrig = false },
-        fmta("\\vec{<>}", {
+        fmta("\\dot{<>}", {
             i(1),
         }),
         { condition = in_mathzone }
     ),
     s(
         { trig = "([%a])ddot", regTrig = true, wordTrig = false },
-        fmta("\\vec{<>}", {
+        fmta("\\ddot{<>}", {
             f(function(_, snip)
                 return snip.captures[1]
             end),
@@ -102,14 +102,14 @@ return {}, {
     ),
     s(
         { trig = "ddot", wordTrig = false },
-        fmta("\\vec{<>}", {
+        fmta("\\ddot{<>}", {
             i(1),
         }),
         { condition = in_mathzone }
     ),
     s(
         { trig = "([%a])tilde", regTrig = true, wordTrig = false },
-        fmta("\\vec{<>}", {
+        fmta("\\tilde{<>}", {
             f(function(_, snip)
                 return snip.captures[1]
             end),
@@ -118,14 +118,14 @@ return {}, {
     ),
     s(
         { trig = "tilde", wordTrig = false },
-        fmta("\\vec{<>}", {
+        fmta("\\tilde{<>}", {
             i(1),
         }),
         { condition = in_mathzone }
     ),
     s(
         { trig = "([%a])und", regTrig = true, wordTrig = false },
-        fmta("\\vec{<>}", {
+        fmta("\\und{<>}", {
             f(function(_, snip)
                 return snip.captures[1]
             end),
@@ -134,7 +134,7 @@ return {}, {
     ),
     s(
         { trig = "und", wordTrig = false },
-        fmta("\\vec{<>}", {
+        fmta("\\und{<>}", {
             i(1),
         }),
         { condition = in_mathzone }

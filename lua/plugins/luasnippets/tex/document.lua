@@ -1,81 +1,114 @@
 ---@diagnostic disable: undefined-global
+
+local lineBegin = require("luasnip.extras.expand_conditions").line_begin
+
+local isFirstLine = function()
+	local lineNumber = vim.fn["line"](".")
+	if lineNumber == 1 then -- If first line
+		return true
+	else
+		return false
+	end
+end
+
+local texZones = {}
+texZones.inMathzone = function() -- math context detection
+	return vim.fn["vimtex#syntax#in_mathzone"]() == 1
+end
+texZones.inText = function()
+	return not texZones.in_mathzone()
+end
+texZones.inComment = function() -- comment detection
+	return vim.fn["vimtex#syntax#in_comment"]() == 1
+end
+texZones.inEnv = function(name) -- generic environment detection
+	local is_inside = vim.fn["vimtex#env#is_inside"](name)
+	return (is_inside[1] > 0 and is_inside[2] > 0)
+end
+-- A few concrete environments---adapt as needed
+texZones.inEquation = function() -- equation environment detection
+	return texZones.in_env("equation")
+end
+texZones.inItemize = function() -- itemize environment detection
+	return texZones.in_env("itemize")
+end
+texZones.inTikz = function() -- TikZ picture environment detection
+	return texZones.in_env("tikzpicture")
+end
+
 return {
-    s(
-        { trig = "preamble" },
-        fmta(
-            [[
-                \documentclass{article}
+	s(
+		{ trig = "header" },
+		fmta(
+			[[
+                \documentclass[a4paper, 12pt]{article}
+                \input{../preamble.tex}
 
-                % Custom command for the course name
-                \newcommand{\coursename}[1]{\def\@coursename{#1}}
-                \newcommand{\getcoursename}{\@coursename}
-                \coursename{<>}
-
-                % Title setup
                 \title{<>}
-                \author{Romain Malice}
-                \date{\today}
-
-                % Display course name on the title page
-                \makeatletter
-                \renewcommand{\maketitle}{
-                  \begin{center}
-                    {\LARGE \@title\par}
-                    \vspace{0.5em}
-                    {\large \textbf{Course:} \getcoursename\par}  % Course name line
-                    \vspace{0.5em}
-                    {\large \@author\par}
-                    \vspace{0.5em}
-                    {\small \@date\par}
-                  \end{center}
-                }
-                \makeatother
-
-                % Font rendering
-                \usepackage[T1]{fontenc}
-                \usepackage[utf8]{inputenc}
-                \usepackage[<>]{babel}
-
-                % Page format
-                \geometry{margin=1in}
-                \usepackage{setspace}
-
-                % Math
-                \usepackage{amsmath, amssymb, bm}
-
-                % Images
-                \usepackage{graphicx}
-                \usepackage{caption}
-
-                % Tables
-                \usepackage{hyperref}
-
-                % References
-                \usepackage{cleveref}
 
                 \begin{document}
-                    \maketitle
 
-                    <>
+                \maketitle
+                \tableofcontents
+
+                <>
+
                 \end{document}
             ]],
-            {
-                c(1, {
-                    i(1, "Electromagnétisme"),
-                    t("Thermodynamique appliquée"),
-                    t("Eléments de statistiques"),
-                    t("Droit de l'ingénieur"),
-                    t("Gestion des combustibles"),
-                    t("Mesures électriques"),
-                    t("Mathématiques appliquées"),
-                }),
-                i(2),
-                c(3, {
-                    t('french'),
-                    t('english'),
-                }),
-                i(0),
-            }
-        )
-    ),
+			{
+				i(1),
+				i(0),
+			}
+		),
+		{ condition = isFirstLine }
+	),
+	s({ trig = "-" }, { t("\\item ") }),
+}, {
+	s({ trig = "mk" }, fmta("\\(<>\\)", { i(1) })),
+	s(
+		{ trig = "dm" },
+		fmta(
+			[[
+                \begin{equation*}
+                    <>
+                \end{equation*}
+                <>
+            ]],
+			{ i(1), i(0) }
+		)
+	),
+	s(
+		{ trig = "beg" },
+		fmta(
+			[[
+                \begin{<>}
+                    <>
+                \end{<>}
+                <>
+            ]],
+			{
+				i(1),
+				i(2),
+				extras.rep(1),
+				i(0),
+			}
+		),
+		{ condition = lineBegin }
+	),
+	s(
+		{ trig = "itt" },
+		fmta(
+			[[
+                \begin{itemize}
+                    <>
+                \end{itemize}
+                <>
+            ]],
+			{
+				i(1),
+				i(0),
+			}
+		),
+		{ condition = lineBegin }
+	),
 }
