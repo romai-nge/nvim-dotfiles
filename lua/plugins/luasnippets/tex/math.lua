@@ -15,7 +15,7 @@ return {}, {
 	-- Super/Sub-scripts
 	s({ trig = "rd", wordTrig = false }, { t("^{"), i(1), t("}") }, { condition = in_mathzone }),
 	s({ trig = "_", wordTrig = false }, { t("_{"), i(1), t("}") }, { condition = in_mathzone }),
-	s({ trig = "sts", wordTrig = false }, { t("_{\\text{"), i(1), t("}}") }, { condition = in_mathzone }),
+	s({ trig = "sx", wordTrig = false }, { t("_{\\text{"), i(1), t("}}") }, { condition = in_mathzone }),
 	s(
 		{ trig = "([%a])([%d])", regTrig = true },
 		fmta("<>_{<>}", {

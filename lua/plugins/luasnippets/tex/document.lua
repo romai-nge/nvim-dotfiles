@@ -75,8 +75,37 @@ return {
                 <>
             ]],
 			{ i(1), i(0) }
-		)
+		),
+		{ condition = lineBegin }
 	),
+	s(
+		{ trig = "all" },
+		fmta(
+			[[
+                \begin{align*}
+                    <>
+                \end{align*}
+                <>
+            ]],
+			{ i(1), i(0) }
+		),
+		{ condition = lineBegin }
+    ),
+	s(
+		{ trig = "caa" },
+		fmta(
+			[[
+                \begin{equation*}
+                \begin{cases}
+                    <>
+                \end{cases}
+                \end{equation*}
+                <>
+            ]],
+			{ i(1), i(0) }
+		),
+		{ condition = lineBegin }
+    ),
 	s(
 		{ trig = "beg" },
 		fmta(
