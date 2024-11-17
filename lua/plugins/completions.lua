@@ -25,7 +25,6 @@ return {
 			ls.config.setup({
 				enable_autosnippets = true,
 				store_selection_keys = "<C-y>",
-
 			})
 
 			cmp.setup({
@@ -54,14 +53,14 @@ return {
 						end
 					end),
 
-					["<C-J>"] = cmp.mapping(function(fallback)
+					["<C-L>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
 						else
 							fallback()
 						end
 					end, { "i", "s" }),
-					["<C-L>"] = cmp.mapping(function(fallback)
+					["<C-J>"] = cmp.mapping(function(fallback)
 						if ls.locally_jumpable(1) then
 							ls.jump(1)
 						else
@@ -78,11 +77,11 @@ return {
 					end, { "i", "s" }),
 
 					["<C-E>"] = cmp.mapping(function(fallback)
-                        if ls.choice_active() then
-                            ls.change_choice(1)
-                        else
-                            fallback()
-                        end
+						if ls.choice_active() then
+							ls.change_choice(1)
+						else
+							fallback()
+						end
 					end, { "i", "s" }),
 				},
 				sources = cmp.config.sources({
