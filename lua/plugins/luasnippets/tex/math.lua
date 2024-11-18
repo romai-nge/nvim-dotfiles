@@ -78,7 +78,7 @@ return {}, {
 	),
 	s(
 		{ trig = "lr{", wordTrig = false },
-		fmta("\\left{ <> \\right}", {
+		fmta("\\left\\{ <> \\right\\}", {
 			i(1),
 		}),
 		{ condition = in_mathzone }

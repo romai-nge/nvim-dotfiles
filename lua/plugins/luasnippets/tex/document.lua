@@ -140,4 +140,20 @@ return {
 		),
 		{ condition = lineBegin }
 	),
+	s(
+		{ trig = "lii" },
+		fmta(
+			[[
+                \begin{enumerate}
+                    <>
+                \end{enumerate}
+                <>
+            ]],
+			{
+				i(1),
+				i(0),
+			}
+		),
+		{ condition = lineBegin }
+	),
 }
