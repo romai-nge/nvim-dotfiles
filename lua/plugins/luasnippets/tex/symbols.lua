@@ -45,6 +45,7 @@ return {}, {
     s({ trig = "c.", wordTrig = false }, { t("\\cdot") }, { condition = in_mathzone }),
     s({ trig = "//", wordTrig = false }, { t("\\parallel") }, { condition = in_mathzone }),
     s({ trig = "ssi", wordTrig = false }, { t("\\iff") }, { condition = in_mathzone }),
+    s({ trig = "prp", wordTrig = false }, { t("\\bot") }, { condition = in_mathzone }),
 
     -- Equivalences
     s({ trig = "===", wordTrig = false }, { t("\\equiv") }, { condition = in_mathzone }),

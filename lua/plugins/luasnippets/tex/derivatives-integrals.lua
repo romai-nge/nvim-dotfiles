@@ -86,9 +86,9 @@ return {
 		}),
 		{ condition = in_mathzone }
 	),
-	s({ trig = "sint", wordTrig = false }, fmta("\\int <> d\\mathbf{S}", { i(1) }), { condition = in_mathzone }),
-	s({ trig = "lint", wordTrig = false }, fmta("\\int <> d\\mathbf{l}", { i(1) }), { condition = in_mathzone }),
-	s({ trig = "vint", wordTrig = false }, fmta("\\int <> dV", { i(1) }), { condition = in_mathzone }),
+	s({ trig = "sint", wordTrig = false }, fmta("\\int_{S} <> d\\bm{S}", { i(1) }), { condition = in_mathzone }),
+	s({ trig = "lint", wordTrig = false }, fmta("\\int_{L} <> d\\bm{l}", { i(1) }), { condition = in_mathzone }),
+	s({ trig = "vint", wordTrig = false }, fmta("\\int_{V} <> dV", { i(1) }), { condition = in_mathzone }),
 	s(
 		{ trig = "oinf", wordTrig = false },
 		fmta("\\int_{0}^{\\infty} <> d<>", {

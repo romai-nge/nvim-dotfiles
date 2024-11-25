@@ -16,6 +16,7 @@ return {}, {
 	s({ trig = "rd", wordTrig = false }, { t("^{"), i(1), t("}") }, { condition = in_mathzone }),
 	s({ trig = "_", wordTrig = false }, { t("_{"), i(1), t("}") }, { condition = in_mathzone }),
 	s({ trig = "sx", wordTrig = false }, { t("_{\\text{"), i(1), t("}}") }, { condition = in_mathzone }),
+    s({ trig = "tx" }, fmta("\\text{<>}", { i(1) }, { condition = in_mathzone })),
 	s(
 		{ trig = "([%a])([%d])", regTrig = true },
 		fmta("<>_{<>}", {
@@ -99,7 +100,7 @@ return {}, {
 	),
 	s(
 		{ trig = "lra", wordTrig = false },
-		fmta("\\langle <> \\rangle" {
+		fmta("\\langle <> \\rangle",{
 			i(1),
 		}),
 		{ condition = in_mathzone }

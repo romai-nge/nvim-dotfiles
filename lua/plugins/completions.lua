@@ -24,7 +24,7 @@ return {
 			require("luasnip.loaders.from_lua").lazy_load({ paths = { "./lua/plugins/luasnippets" } }) -- Custom snippets
 			ls.config.setup({
 				enable_autosnippets = true,
-				store_selection_keys = "<C-y>",
+				store_selection_keys = "<Tab>",
 			})
 
 			cmp.setup({
