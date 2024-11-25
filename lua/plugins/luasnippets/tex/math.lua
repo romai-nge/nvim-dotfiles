@@ -97,6 +97,13 @@ return {}, {
 		}),
 		{ condition = in_mathzone }
 	),
+	s(
+		{ trig = "lra", wordTrig = false },
+		fmta("\\langle <> \\rangle" {
+			i(1),
+		}),
+		{ condition = in_mathzone }
+	),
 
 	s({ trig = "rm" }, fmta("\\mathrm{<>}", { i(1) }), { condition = in_mathzone }),
 	s({ trig = "cll" }, fmta("\\mathcal{<>}", { i(1) }), { condition = in_mathzone }),
